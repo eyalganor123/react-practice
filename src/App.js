@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Clock from './clock.jsx';
+import Switch from './switch.jsx';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clockIsOn: true,
+    };
+  }
+
+  handleSwitchChange = (isToggled) => {
+    // console.log(isToggled);
+    this.setState({ clockIsOn: !this.state.clockIsOn } );
+    console.log(this.state.clockIsOn);
+
+  }
+  render() {
+    return (
+      <div className="App">
+        <Clock color="rgb(230,230,230)" onSwitch={this.state.clockIsOn}/>
+        {/* <Clock color="yellow" />
+      <Clock />
+      <Clock />
+      <Clock /> */}
+
+        <Switch onChange={this.handleSwitchChange} />
+      </div>
+    );
+  }
 }
 
 export default App;
